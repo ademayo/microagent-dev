@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: docker/ollama.dockerfile
+    ports:
+      - "127.0.0.1:${OLLAMA_PORT}:11434"
     environment:
       OLLAMA_HOST: http://ollama:11434
       OLLAMA_MODELS: /home/ollama/.ollama/models
@@ -59,13 +61,6 @@ services:
     depends_on:
       - ollama
     restart: "no"
-
-  app:
-    build:
-      context: .
-      dockerfile: docker/app.dockerfile
-    environment:
-      OLLAMA_HOST: http://ollama:11434
 
 networks:
   microagent:

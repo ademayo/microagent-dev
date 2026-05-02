@@ -1,14 +1,26 @@
 {
-  "name": "@ademayo/microagent-dev",
-  "version": "1.0.0",
-  "description": "Environment For Working With Agents In OpenClaw & Ollama",
-  "homepage": "https://github.com/ademayo/microagent-dev#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ademayo/microagent-dev.git"
-  },
-  "author": "Augustin deMayo <gus@demayowebdevelopment.com>",
-  "devDependencies": {
-    "git-squash-branch": "^1.4.0"
-  }
+	"name": "@ademayo/microagent-dev",
+	"version": "1.0.0",
+	"description": "Environment For Working With Agents In Bun & Ollama",
+	"homepage": "https://github.com/ademayo/microagent-dev#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ademayo/microagent-dev.git"
+	},
+	"author": "Augustin deMayo <gus@demayowebdevelopment.com>",
+	"scripts": {
+		"build": "bun run lint && bun build src/index.ts --outdir dist --target bun",
+		"dev": "bun run lint && bun --watch src/index.ts",
+		"lint": "biome check --write src package.json tsconfig.json",
+		"start": "bun src/index.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.14",
+		"bun-types": "1.3.13",
+		"git-squash-branch": "^1.4.0"
+	},
+	"dependencies": {
+		"elysia": "^1.4.28",
+		"langchain": "^1.3.5"
+	}
 }

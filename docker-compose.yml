@@ -60,6 +60,13 @@ services:
       - ollama
     restart: "no"
 
+  app:
+    build:
+      context: .
+      dockerfile: docker/app.dockerfile
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+
 networks:
   microagent:
     driver: bridge

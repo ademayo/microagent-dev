@@ -1,0 +1,17 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "@ademayo/microagent-dev",
+      "devDependencies": {
+        "git-squash-branch": "^1.4.0",
+      },
+    },
+  },
+  "packages": {
+    "git-squash-branch": ["git-squash-branch@1.4.0", "", { "dependencies": { "tasuku": "^2.0.1" }, "bin": { "git-squash-branch": "dist/index.cjs" } }, "sha512-K428JTFqRwybq3Wyd4KeZtlBJGdLQEKi+5jGVx0LusX9ykk9wK+cLM7VsIY0MXAp34eifjl6GFJeKnM8WM7Ecw=="],
+
+    "tasuku": ["tasuku@2.3.0", "", {}, "sha512-9Jtk+XAnttslCw4i9RceSZGr2PT5TLn0vUyWnoP2SdlSYzkiYRY6kB5qnPi5IQ/Em8e4oBow1rpaA39iijTIrA=="],
+  }
+}

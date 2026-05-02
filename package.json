@@ -1,0 +1,14 @@
+{
+  "name": "@ademayo/microagent-dev",
+  "version": "1.0.0",
+  "description": "Environment For Working With Agents In OpenClaw & Ollama",
+  "homepage": "https://github.com/ademayo/microagent-dev#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ademayo/microagent-dev.git"
+  },
+  "author": "Augustin deMayo <gus@demayowebdevelopment.com>",
+  "devDependencies": {
+    "git-squash-branch": "^1.4.0"
+  }
+}

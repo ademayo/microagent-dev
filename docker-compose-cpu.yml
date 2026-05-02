@@ -1,0 +1,60 @@
+services:
+
+  ollama:
+    build:
+      context: .
+      dockerfile: docker/ollama.dockerfile
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODELS: /home/ollama/.ollama/models
+      OLLAMA_MODEL: ${OLLAMA_MODEL}
+      OLLAMA_IMAGE_MODEL: ${OLLAMA_IMAGE_MODEL}
+    volumes:
+      - ollama_data:/home/ollama/.ollama
+    networks:
+      - microagent
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    healthcheck:
+      test: [ "CMD", "ollama", "list" ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+  ollama-build:
+    build:
+      context: .
+      dockerfile: docker/ollama.dockerfile
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10 &&
+      ollama pull ${OLLAMA_MODEL} &&
+      ollama pull ${OLLAMA_IMAGE_MODEL}
+      "
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODELS: /home/ollama/.ollama/models
+      OLLAMA_MODEL: ${OLLAMA_MODEL}
+      OLLAMA_IMAGE_MODEL: ${OLLAMA_IMAGE_MODEL}
+    volumes:
+      - ollama_data:/home/ollama/.ollama
+    networks:
+      - microagent
+    depends_on:
+      - ollama
+    restart: "no"
+
+networks:
+  microagent:
+    driver: bridge
+
+volumes:
+  ollama_data:
